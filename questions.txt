@@ -1,0 +1,15 @@
+How do I connect two behaviors?
+How do I adjust the properties of a PlatformerControllerBehavior?
+How can I damage a player?
+What does an AlwaysBehavior do?
+How to change the sprite of a PlaceholderBehavior?
+How to access values in a StoreBehaviour?
+What is the difference between a BackgroundBehavior and a PlaceholderBehaviour?
+Can I add a custom behavior to the game?
+What behavior to use for finding a specific node in my scene?
+What does the GroupBehavior do?
+What does the FPS warn property on the PerformanceUIBehavior do?
+What expressions are valid to evaluate in the BindBehavior?
+What behavior to use for making UI?
+How can I disable a behavior?
+How to disconnect two behaviors?
