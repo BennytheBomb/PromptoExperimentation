@@ -9,7 +9,7 @@ Can I add a custom behavior to the game?
 What behavior to use for finding a specific node in my scene?
 What does the GroupBehavior do?
 What does the FPS warn property on the PerformanceUIBehavior do?
-What expressions are valid to evaluate in the BindBehavior?
+What kind of expressions are valid to evaluate in the BindBehavior?
 What behavior to use for making UI?
 How can I disable a behavior?
 How to disconnect two behaviors?

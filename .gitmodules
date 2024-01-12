@@ -1,0 +1,6 @@
+[submodule "gdscript-docs-maker"]
+	path = gdscript-docs-maker
+	url = https://github.com/GDQuest/gdscript-docs-maker.git
+[submodule "godot-pronto"]
+	path = godot-pronto
+	url = https://github.com/hpi-swa-lab/godot-pronto.git
