@@ -1,0 +1,202 @@
+{
+  "data": [
+    {
+      "question": "How do I connect two behaviors?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#connections",
+          "content": "Connections are an extension of Godot signals to be more flexible. Connections can be dragged from any behavior to any arbitrary node in a scene. They are the primary means to assemble your game by wiring Behaviors together."
+        },
+        {
+          "source": "pronto-docs/README.md#connections",
+          "content": "Connections are created by hovering the \"+\" that appears below selected nodes. There are two types of connections.\nThe type \"target\" is created by dragging a signal from the list onto its receiver. From the list in the dialog, you can either choose any method to invoke or choose <statement(s)> to execute arbitrary code. In the expressions for the arguments or the arbitrary code, you can write Godot expression that can access from and to.\nThe type \"expression\" allows to execute arbitrary Godot code without a receiver node. Create an expression connection by double-clicking a signal in the list. You can access from in the code."
+        }
+      ],
+      "answerable": true
+    },
+    {
+      "question": "How do I adjust the properties of a PlatformerControllerBehavior?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#behaviors",
+          "content": "Connections are an extension of Godot signals to be more flexible. Connections can be dragged from any behavior to any arbitrary node in a scene. They are the primary means to assemble your game by wiring Behaviors together."
+        },
+        {
+          "source": "pronto-docs/PlatformerControllerBehavior.md",
+          "content": "## Property Descriptions\n\n### player\n\n```gdscript\n@export var player: PlatformerControllerBehavior.Player = 0\n```\n\nDetermines which controls (keys) are used. Which keys that are is defined in [member PlatformControllerBehavior.key_map]  See [enum PlatformControllerBehavior.Controls] for possible values\n\n### jump\\_velocity\n\n```gdscript\n@export var jump_velocity: float = 400\n```\n\n- **Setter**: `@jump_velocity_setter`\n\nThe speed with which the character jumps.\n\n### horizontal\\_velocity\n\n```gdscript\n@export var horizontal_velocity: float = 400\n```\n\n- **Setter**: `@horizontal_velocity_setter`\n\nThe speed with which the character moves sideways.\n\n### coyote\\_time\n\n```gdscript\n@export var coyote_time = 0.1\n```\n\nThe amount of time after falling off a platform where the character can still jump, in seconds.\n\n### jump\\_buffer\n\n```gdscript\n@export var jump_buffer = 0.1\n```\n\nThe amount of time a jump input will trigger a jump if the character is not touching the floor, in seconds.\n\n### gravity\\_paused\n\n```gdscript\n@export var gravity_paused: bool = false\n```\n\n- **Setter**: `@gravity_paused_setter`\n- **Getter**: `@gravity_paused_getter`\n\n### show\\_trail\n\n```gdscript\n@export var show_trail: bool = false\n```\n\nIf enabled, the parent leaves a trail of recent positions."
+        }
+      ],
+      "answerable": true
+    },
+    {
+      "question": "How can I damage a player?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#behaviors",
+          "content": "HealthBarBehavior shows a rectangular health bar. Offers methods to manipulate the current health and emits a signal when health drops to zero."
+        },
+        {
+          "source": "pronto-docs/HealthBarBehavior.md",
+          "content": "## Method Descriptions\n\n### damage\n\n```gdscript\nfunc damage(amount)\n```\n\nReduces the current health value by the given [code]amount[/code]."
+        }
+      ],
+      "answerable": true
+    },
+    {
+      "question": "What does an AlwaysBehavior do?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#behaviors",
+          "content": "AlwaysBehavior triggers every frame. Analog to Godot's _process function. Can be paused."
+        },
+        {
+          "source": "pronto-docs/AlwaysBehavior.md",
+          "content": "# AlwaysBehavior\n\n**Extends:** [Behavior](../Behavior)\n\n## Description\n\nSee [signal AlwaysBehavior.always] and [signal AlwaysBehavior.physics_always] for a description of which signal to listen to.\n\nSee [signal AlwaysBehavior.always] and [signal AlwaysBehavior.physics_always] for a description of which signal to listen to.\n\n## Property Descriptions\n\n### paused\n\n```gdscript\n@export var paused = false\n```\n\nIf this is set to [code]true[/code] the AlwaysBehavior will stop emitting any signals. During runtime, do not set this directly. Instead use [method AlwaysBehavior.pause] and [method AlwaysBehavior.resume]\n\n## Method Descriptions\n\n### pause\n\n```gdscript\nfunc pause()\n```\n\nCalling this method results in pausing the execution of always Use [method AlwaysBehavior.resume] to continue the execution\n\n### resume\n\n```gdscript\nfunc resume()\n```\n\nCalling this method results in continuing the paused execution Use [method AlwaysBehavior.pause] to stop it again.\n\n## Signals\n\n- signal always(delta): This Signal gets emitted every frame in the [method AlwaysBehavior._process] method if [member AlwaysBehavior.paused] is set to [code]false[/code]\n- signal physiscs_always(delta): This Signal gets emitted every frame in the [method AlwaysBehavior._physics_process] method if [member AlwaysBehavior.paused] is set to [code]false[/code]\n"
+        }
+      ],
+      "answerable": true
+    },
+    {
+      "question": "How to change the sprite of a PlaceholderBehavior?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#behaviors",
+          "content": "PlaceholderBehavior shows a colored rectangle with a label. Useful as a quick means to communicate a game object's function. Functions as a collision shape, so you don't need to add another. Instead of a rectangle a placeholder can also display a sprite instead (use the Sprite Library in the Inspector to choose an existing texture or load your own). Can be flash()ed in a different color."
+        },
+        {
+          "source": "pronto-docs/PlaceholderBehavior.md",
+          "content": "### sprite\\_library\n\n```gdscript\n@export var sprite_library: Texture2D\n```\n\n- **Setter**: `@sprite_library_setter`\n\nThe sprite library is desribed in [class SpriteInspector] as well as \"addons/pronto-docs/helpers/sprite_window.tscn\". Search through a library of textures to choose your sprite.\n"
+        }
+      ],
+      "answerable": true
+    },
+    {
+      "question": "How to access values in a StoreBehaviour?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#behaviors",
+          "content": "StoreBehavior uses the Godot meta properties to store state. You can configure it to store values in the global dictionary G and access it via G.at(prop)."
+        },
+        {
+          "source": "pronto-docs/StoreBehavior.md",
+          "content": "### at\n\n```gdscript\nfunc at(prop: String, default = null)\n```\n\n### at\\_and\\_remove\n\n```gdscript\nfunc at_and_remove(prop: String, default = null)\n```"
+        }
+      ],
+      "answerable": true
+    },
+    {
+      "question": "What is the difference between a BackgroundBehavior and a PlaceholderBehaviour?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#behaviors",
+          "content": "PlaceholderBehavior shows a colored rectangle with a label. Useful as a quick means to communicate a game object's function. Functions as a collision shape, so you don't need to add another. Instead of a rectangle a placeholder can also display a sprite instead (use the Sprite Library in the Inspector to choose an existing texture or load your own). Can be flash()ed in a different color."
+        },
+        {
+          "source": "pronto-docs/StoreBehavior.md",
+          "content": "# PlaceholderBehavior\n\n**Extends:** [Behavior](../Behavior)\n\n## Description\n\n## Constants Descriptions\n\n### OUTLINE\\_SHADER\n\n```gdscript\nconst OUTLINE_SHADER: String = \"res://addons/pronto-docs/shader/outline.gdshader\"\n```\n\n## Property Descriptions\n\n### label\n\n```gdscript\n@export var label = \"\"\n```\n\n- **Setter**: `@label_setter`\n\nThe label that is shown inside the Placeholder, unless a sprite is used.\n\n### color\n\n```gdscript\n@export var color = \"(1, 1, 1, 1)\"\n```\n\n- **Setter**: `@color_setter`\n\nThe color used for the placeholder.\n\n### keep\\_in\\_origin\n\n```gdscript\n@export var keep_in_origin = true\n```\n\nIf [code]true[/code], this Placeholder's parent will be moved instead of the placeholder in the editor. Convenient for not having to switch selected items all the time.\n\n### undefined\\_shape\\_string\n\n```gdscript\nvar undefined_shape_string\n```\n\n### use\\_sprite\n\n```gdscript\n@export var use_sprite = false\n```\n\n- **Setter**: `@use_sprite_setter`\n\nIf [code]true[/code] a [class Sprite2D] is shown.\n\n### DEFAULT\\_TEXTURE\n\n```gdscript\nvar DEFAULT_TEXTURE\n```\n\n### sprite\\_texture\n\n```gdscript\n@export var sprite_texture: Texture2D\n```\n\n- **Setter**: `@sprite_texture_setter`\n\nThe texture used for the [class Sprite2D]. Can be loaded from a file or from the sprite_library.\n\n### sprite\\_library\n\n```gdscript\n@export var sprite_library: Texture2D\n```\n\n- **Setter**: `@sprite_library_setter`\n\nThe sprite library is desribed in [class SpriteInspector] as well as \"addons/pronto-docs/helpers/sprite_window.tscn\". Search through a library of textures to choose your sprite.\n\n### outline\\_visible\n\n```gdscript\n@export var outline_visible: bool = false\n```\n\n- **Setter**: `@outline_visible_setter`\n\nIf [code]true[/code], the outline is shown.\n\n### outline\\_color\n\n```gdscript\n@export var outline_color: Color = \"(1, 1, 0, 1)\"\n```\n\n- **Setter**: `@outline_color_setter`\n\nThe color used for the outline.\n\n### outline\\_width\n\n```gdscript\n@export var outline_width: float = 1\n```\n\n- **Setter**: `@outline_width_setter`\n\nThe width of the outline.\n\n### outline\\_pattern\n\n```gdscript\n@export var outline_pattern = 0\n```\n\n- **Setter**: `@outline_pattern_setter`\n\nThe rounding method for corners of the outline (only used if [class Sprite2D] is used).\n\n### shape\\_type\n\n```gdscript\n@export var shape_type: String = \"Rect\"\n```\n\n- **Setter**: `@shape_type_setter`\n\nThis will define the shape of the placeholder as well as the shape of the hitbox.\n\n### placeholder\\_size\n\n```gdscript\nvar placeholder_size = \"(20, 20)\"\n```\n\n- **Setter**: `@placeholder_size_setter`\n\nThe size of the placeholder.\n\n### capsule\\_height\n\n```gdscript\nvar capsule_height: float = 30\n```\n\n- **Setter**: `@capsule_height_setter`\n\nThe height of the capsule.\n\n### capsule\\_radius\n\n```gdscript\nvar capsule_radius: float = 10\n```\n\n- **Setter**: `@capsule_radius_setter`\n\nThe radius of the capsule.\n\n### circle\\_radius\n\n```gdscript\nvar circle_radius: float = 10\n```\n\n- **Setter**: `@circle_radius_setter`\n\nThe radius of the circle.\n\n### sprite\n\n```gdscript\nvar sprite: Sprite2D\n```\n\n### size\n\n```gdscript\nvar size: Vector2\n```\n\n- **Getter**: `@size_getter`\n\n### shape\n\n```gdscript\nvar shape\n```\n\n## Method Descriptions\n\n### show\\_outline\n\n```gdscript\nfunc show_outline()\n```\n\nShows an outline around the Placeholder.\n\n### hide\\_outline\n\n```gdscript\nfunc hide_outline()\n```\n\nHides the outline around the Placeholder.\n\n### set\\_outline\\_visible\n\n```gdscript\nfunc set_outline_visible(visible)\n```\n\nToggles the visibility of the outline according to the given parameter.\n\n### flash\n\n```gdscript\nfunc flash(color: Color, duration: float = 0.3)\n```\n\nFlashes this Placeholder a certain color for a duration. It will take on the desired color immediately and return to its original color over the given duration.\n\n### should\\_keep\\_in\\_origin\n\n```gdscript\nfunc should_keep_in_origin()\n```\n\n### show\\_icon\n\n```gdscript\nfunc show_icon()\n```\n\n### find\\_non\\_transparent\\_rect\n\n```gdscript\nfunc find_non_transparent_rect()\n```\n\n### handles\n\n```gdscript\nfunc handles()\n```\n"
+        },
+        {
+          "source": "pronto-docs/README.md#behaviors",
+          "content": "BackgroundBehavior add to your scene to change the background color of the scene."
+        },
+        {
+          "source": "pronto-docs/BackgroundBehavior.md",
+          "content": "# BackgroundBehavior\n\n**Extends:** [Behavior](../Behavior)\n\n## Description\n\n## Property Descriptions\n\n### color\n\n```gdscript\n@export var color = \"(0.3922, 0.5843, 0.9294, 1)\"\n```\n\n- **Setter**: `@color_setter`\n\nThe color of the background rectangle"
+        }
+      ],
+      "answerable": true
+    },
+    {
+      "question": "Can I add a custom behavior to the game?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#phase-2-extending-the-framework",
+          "content": "## Phase 2: Extending the Framework\n\n### Writing a New Behavior\n\n1. Choose an icon to use as thumbnail from [the Godot source](https://github.com/godotengine/godot/tree/master/editor/icons) (it is recommended to download the source as ZIP for easily browsing the list).\n2. Create a {Name}.gd file in `addons/pronto-docs/behaviors`.\n3. As a header for the file, use:\n\n```python\n@tool\n#thumb(\"IconName\")\nextends Behavior\n```\n\n4. Proceed to write a Godot Node class as regular, e.g. by using @export and signals.\n\n> ⚠\uFE0F make sure to call super implementations of all overwritten methods, e.g. `super._ready()` and `super._process()`.\n"
+        }
+      ],
+      "answerable": true
+    },
+    {
+      "question": "What behavior to use for finding a specific node in my scene?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#behaviors",
+          "content": "QueryBehavior searches for nodes in the scene and emits signals for results. Properties allow to filter, sort, and limit results. Can be used for tasks such as destroying all enemies in a certain radius, infecting a random player, or finding the nearest health pack."
+        },
+        {
+          "source": "pronto-docs/QueryBehavior.md",
+          "content": "# QueryBehavior\n\n**Extends:** [Behavior](../Behavior)\n\n## Description\n\n## Property Descriptions\n\n### queries\n\n```gdscript\n@export var queries: Array[Query]\n```\n\n## Method Descriptions\n\n### query\n\n```gdscript\nfunc query(emit_results = true)\n```\n\nInitiate a query. Returns [param]\n\n## Signals\n\n- signal found(node): Emitted for each node found, ordered according to the priority strategy. [param node] The node that was found.)\n- signal found_all(nodes): Emitted once all nodes have been found. [param nodes] The nodes that were found.\n- signal found_none(): Emitted if no node was found.\n"
+        }
+      ],
+      "answerable": true
+    },
+    {
+      "question": "What does the GroupBehavior do?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#behaviors",
+          "content": "GroupBehavior\tDraws a shape around its children to group them visually. Only visible in the editor."
+        },
+        {
+          "source": "pronto-docs/GroupBehavior.md",
+          "content": "# GroupBehavior\n\n**Extends:** [Behavior](../Behavior)\n\n## Description"
+        }
+      ],
+      "answerable": true
+    },
+    {
+      "question": "What does the FPS warn property on the PerformanceUIBehavior do?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/PerformanceUIBehavior.md",
+          "content": "## Property Descriptions\n\n### fps\\_warn\n\n```gdscript\n@export var fps_warn: int = 0\n```\n\n- **Setter**: `@fps_warn_setter`\n\nSet the lower limit of when the fps_warning signal should be fired. (0 means never)"
+        }
+      ],
+      "answerable": true
+    },
+    {
+      "question": "What kind of expressions are valid to evaluate in the BindBehavior?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#behaviors",
+          "content": "BindBehavior optionally reads some properties and then writes one property of its parent. Changes to the properties it reads are synced every frame. The read properties are accessible in the convert expression; the first under value0, the second under value1 and so on. For example, create a Label node, add a Bind node as a child, use text as property and put any expression in its convert field. Another example would use a Clock with a Bind node as a child that uses duration_seconds as a property to change the trigger-time depending on a Value-Behavior."
+        },
+        {
+          "source": "pronto-docs/BindBehavior.md",
+          "content": "### evaluate\n\n```gdscript\n@export var evaluate: ConnectionScript\n```\n\nScript to evaluate to find the current property value to set.\n\n### to\\_prop\n\n```gdscript\n@export var to_prop: String\n```\n\nProperty of the parent node to write the result of evaluate to."
+        }
+      ],
+      "answerable": true
+    },
+    {
+      "question": "What behavior to use for making UI?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#building-ui",
+          "content": "##### Building UI\n\n* `EditorIcon`: a texture that will load any of the built-in icons and color it according to the configured theme.\n* In `ExpressionInspector.gd` you can specify that a property should get a GDScript code editor."
+        }
+      ],
+      "answerable": false
+    },
+    {
+      "question": "How can I disable a behavior?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#connections",
+          "content": "You can disable a connection by unchecking the checkbox in the top-right or in its context menu."
+        }
+      ],
+      "answerable": false
+    },
+    {
+      "question": "How to disconnect two behaviors?",
+      "retrieve": [
+        {
+          "source": "pronto-docs/README.md#connections",
+          "content": "* Deleting\n  * Open the connection, then click on the trash icon in the top-right.\n  * Alternatively, right-click the connection and choose \"Delete\"."
+        }
+      ],
+      "answerable": true
+    }
+  ]
+}

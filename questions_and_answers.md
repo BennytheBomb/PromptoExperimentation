@@ -44,7 +44,7 @@ The type "expression" allows to execute arbitrary Godot code without a receiver 
 > [[Pronto-Docs](pronto-docs/PlaceholderBehavior.md)] sprite_library\
 > `@export var sprite_library: Texture2D`\
 > Setter: `@sprite_library_setter`\
-> The sprite library is desribed in [class SpriteInspector] as well as "addons/pronto/helpers/sprite_window.tscn". Search through a library of textures to choose your sprite.
+> The sprite library is described in [class SpriteInspector] as well as "addons/pronto/helpers/sprite_window.tscn". Search through a library of textures to choose your sprite.
 
 ✅ Question can be answered!
 
