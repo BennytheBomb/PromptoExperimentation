@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from chat import create_chatbot
+from chat_new import create_chatbot
 from langserve import add_routes
 from dotenv import load_dotenv
 load_dotenv()
