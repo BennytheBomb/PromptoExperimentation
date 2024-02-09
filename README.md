@@ -4,6 +4,8 @@
 
 Demo Showcase: https://youtu.be/95AEFzuPio0
 
+Final Presentation Slides with in-depth explanation: https://drive.google.com/file/d/1xSaF9bJQqhpydRMCHdcgtGCE5grYDhga/view?usp=sharing
+
 ## Abstract
 
 Game development, particularly for beginners using Pronto, a prototyping framework build on top of the Godot Game Engine, presents significant challenges. First the limited documentation, only containing essential information regarding the framework. And second the limited tech support, not available 24/7. To overcome these hurdles with a modern approach, Prompto, a retrieval augmented generation chatbot, is introduced. Prompto utilizes natural language processing to provide tailored assistance by accessing Pronto's essential resources. Prompto offers real-time support, conveniently operated in the Browser, bridging the gap between novices and the complexities of game development.
