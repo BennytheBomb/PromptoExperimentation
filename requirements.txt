@@ -8,3 +8,4 @@ unstructured
 openai
 chromadb
 markdown
+tiktoken
