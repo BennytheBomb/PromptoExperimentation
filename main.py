@@ -1,17 +1,39 @@
-import langchain_helper as lch
+import time
+from chat_final import create_chatbot
 import streamlit as st
-import textwrap
 
-st.title("YouTube Assistant")
+chatbot = create_chatbot()
 
-with st.sidebar:
-    with st.form(key='my_form'):
-        youtube_url = st.sidebar.text_area(label="What is the YouTube video URL?", max_chars=50)
-        query = st.sidebar.text_area(label="Ask me about the video?", max_chars=50, key='query')
-        submit_button = st.form_submit_button(label="Submit")
+st.title("Prompto")
 
-if query and youtube_url:
-    db = lch.create_vector_db_from_youtube_url(youtube_url)
-    response = lch.get_response_from_query(db, query)
-    st.subheader("Answer:")
-    st.text(textwrap.fill(response, width=80))
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# React to user input
+if prompt := st.chat_input("Type your question here:"):
+    # Display user message in chat message container
+    st.chat_message("user").markdown(prompt)
+    # Add user message to chat history
+    st.session_state.messages.append({"role": "user", "content": prompt})
+
+    response = chatbot(prompt)["answer"]
+    response = "Prompto: " + response
+    # Display assistant response in chat message container
+    with st.chat_message("assistant"):
+        message_placeholder = st.empty()
+        full_response = ""
+        # Simulate stream of response with milliseconds delay
+        for chunk in response.split():
+            full_response += chunk + " "
+            time.sleep(0.05)
+            # Add a blinking cursor to simulate typing
+            message_placeholder.markdown(full_response + "▌")
+        message_placeholder.markdown(full_response)
+    # Add assistant response to chat history
+    st.session_state.messages.append({"role": "assistant", "content": full_response})

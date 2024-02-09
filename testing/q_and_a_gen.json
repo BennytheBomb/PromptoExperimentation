@@ -212,6 +212,36 @@
       ],
       "answerable": true,
       "ai_answer": "To disconnect two behaviors in Pronto, you can either open the connection and click on the trash icon in the top-right corner or right-click the connection and choose \"Delete\"."
+    },
+    {
+      "question": "How can I create a movable player?",
+      "retrieve": [],
+      "answerable": true,
+      "ai_answer": "To create a movable player you need to:\n1. Create a CharacterBody2D.\n2. Add a PlatformerControllerBehavior as a child.\n3. Add a PlaceholderBehavior as a child."
+    },
+    {
+      "question": "How can I create platforms for the player to jump on?",
+      "retrieve": [],
+      "answerable": true,
+      "ai_answer": "To create platforms for the player to jump on you need to: \n1. Create a StaticBody.\n2. Add a PlaceholderBehavior as a child.\n3. Give the PlaceholderBehavior a distinct color. 4. Drag the platform to the desired position by clicking and dragging the cross."
+    },
+    {
+      "question": "How can I create moving platforms?",
+      "retrieve": [],
+      "answerable": true,
+      "ai_answer": "To create moving platforms for the player to jump on you need to:\n1. Create a Path2D.\n2. Add a PathFollow2D as a child of the Path2D.\n3. Add a CharacterBody2D as a child of the PathFollow2D.\n4. Add a PlaceholderBehavior as a child of the CharacterBody2D\n5. Add an AlwaysBehavior as a child of the CharacterBody2D.\n6. Connect the AlwaysBehavior with the PathFollow2D.\n7. In the <statement> field add set_progress.\n8. For the value insert to.progress + <your speed value>."
+    },
+    {
+      "question": "How do I connect two behaviors?",
+      "retrieve": [],
+      "answerable": true,
+      "ai_answer": "To connect two behaviors in pronto, you can create a connection by hovering the \"+\" below the selected nodes. There are two types of connections: \"target\" and \"expression\".\n\nFor a \"target\" connection, you can drag a signal from the list onto its receiver. In the dialog, you can choose a method to invoke or execute arbitrary code. You can write Godot expressions that can access the \"from\" and \"to\" nodes.\n\nFor an \"expression\" connection, you can double-click a signal in the list to create an expression connection. This allows you to execute arbitrary Godot code without a receiver node. You can access the \"from\" node in the code."
+    },
+    {
+      "question": "How can I make the player jump higher?",
+      "retrieve": [],
+      "answerable": true,
+      "ai_answer": "To make the player jump higher adjust the \"Jump Velocity\" property of the PlatformerControllerBehavior."
     }
   ]
 }

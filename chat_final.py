@@ -1,4 +1,4 @@
-from langchain.chains.conversational_retrieval.prompts import CONDENSE_QUESTION_PROMPT
+import json
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain_community.chat_models import ChatOpenAI
@@ -9,15 +9,26 @@ from langchain.document_loaders import UnstructuredMarkdownLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter, Language
 from langchain.memory import ConversationSummaryMemory
 from langchain.chains import ConversationalRetrievalChain
+from langchain.retrievers import ContextualCompressionRetriever
+from langchain.retrievers.document_compressors import LLMChainExtractor
+from langchain_core.documents import Document
 
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 
 load_dotenv()
 
+qa_gen_json_file_path = "testing/q_and_a_gen.json"
 embeddings = OpenAIEmbeddings()
 llm = ChatOpenAI(temperature=0)
-prompt_template = """You are a helpful assistant answering all questions related to Pronto, a game mechanic prototyping framework for the Godot Game Engine. This framework introduces the concept of Behaviors. Behaviors drive the actions of game objects in a game. They can be connected to each other to create more complex interactions. Try to answer the question using the Pronto framework before thinking of using the Godot Engine. Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
+prompt_template = """You are a helpful assistant answering all questions related to Pronto, 
+a game mechanic prototyping framework for the Godot Game Engine. This framework introduces 
+the concept of Behaviors. Behaviors drive the actions of game objects in a game. They can 
+be connected to each other to create more complex interactions. Try to answer the question 
+using the Pronto framework before thinking of using the Godot Engine. Stick to existing 
+behaviors, don't make up new ones. Use the following pieces of context to answer the 
+question at the end. If you don't know the answer, just say that you don't know, don't try
+ to make up an answer.
 
 {context}
 
@@ -33,15 +44,18 @@ query_prompt = PromptTemplate(
     game prototyping framework called Pronto. In this framework 
     are components called Behaviors. Behaviors can be used to drive 
     game mechanics. There are many different Behaviors serving a 
-    different purpose. Your task is to generate 3 different versions 
-    of the given user question to retrieve relevant documents from a 
+    different purpose. Your task is to generate 3 different 
+    queries containing relevant keywords to retrieve relevant documents from a 
     vector database. By generating multiple perspectives on the user question, 
     your goal is to help the user overcome some of the limitations 
-    of distance-based similarity search. If applicable, ask for 
-    Behaviors that could help regarding the question. Provide these alternative 
-    questions separated by newlines. Original question: {question}""",
+    of distance-based similarity search. Provide these separated by newlines. 
+    Original question: {question}""",
 )
 
+with open(qa_gen_json_file_path, "r") as qa_json_file:
+    qa_json = json.load(qa_json_file)
+
+qa_data = qa_json["data"]
 
 def create_chatbot():
     docs_loader = DirectoryLoader("pronto-docs", glob="**/*.md", loader_cls=UnstructuredMarkdownLoader)
@@ -68,19 +82,38 @@ def create_chatbot():
     pdlg_retriever.add_documents(docs)
 
     pdlg_mq_retriever = MultiQueryRetriever.from_llm(
-        retriever=pdlg_retriever, llm=llm, prompt=query_prompt
+        retriever=pdlg_retriever, llm=llm,
+        prompt=query_prompt
+    )
+
+    qa_docs = []
+    for data in qa_data:
+        qa_docs.append(Document(page_content=data["question"] + "\n\n" + data["ai_answer"],
+                                metadata={'source': qa_gen_json_file_path}))
+
+    qa_db = Chroma.from_documents(qa_docs, OpenAIEmbeddings())
+
+    fake_retriever = qa_db.as_retriever()
+
+    qa_compressor = LLMChainExtractor.from_llm(llm)
+    qa_compression_retriever = ContextualCompressionRetriever(
+        base_compressor=qa_compressor, base_retriever=fake_retriever
     )
 
     ensemble_retriever = EnsembleRetriever(
-        retrievers=[pdlg_mq_retriever, pdlg_retriever], weights=[0.5, 0.5]
+        retrievers=[pdlg_mq_retriever, pdlg_retriever, qa_compression_retriever], weights=[0.3, 0.4, 0.3]
     )
 
     memory = ConversationSummaryMemory(
         llm=llm, memory_key="chat_history", return_messages=True
     )
 
-    return ConversationalRetrievalChain.from_llm(
+    chain = ConversationalRetrievalChain.from_llm(
         llm,
         retriever=ensemble_retriever,
         memory=memory,
-        combine_docs_chain_kwargs={"prompt": prompt})
+        verbose=True,
+        combine_docs_chain_kwargs={"prompt": prompt}
+    )
+
+    return chain

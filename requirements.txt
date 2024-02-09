@@ -1,0 +1,10 @@
+streamlit~=1.30.0
+langchain~=0.0.350
+python-dotenv~=1.0.0
+uvicorn~=0.24.0.post1
+fastapi~=0.105.0
+langserve~=0.0.36
+unstructured
+openai
+chromadb
+markdown
